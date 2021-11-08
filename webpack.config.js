@@ -2,19 +2,17 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const yargs = require('yargs');
-const env = yargs.argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
 
 let outputFile, mode, devtool;
 
 if (process.env.NODE_ENV === 'production') {
   mode = 'production';
-  devtool = 'cheap-module-source-map';
+  devtool = 'source-map';
   outputFile = pkg.name + '.min.js';
 } else {
   mode = 'development';
-  devtool = 'eval-cheap-module-source-map';
+  devtool = 'eval-source-map';
   outputFile = pkg.name + '.js';
 }
 
@@ -25,9 +23,14 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: outputFile,
-    library: 'WebpackLibrary',
+    library: pkg.library,
     libraryTarget: 'umd',
     libraryExport: 'default',
+    umdNamedDefine: true,
+    globalObject: 'this',
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
   module: {
     rules: [
@@ -39,9 +42,6 @@ const config = {
         },
       },
     ],
-  },
-  resolve: {
-    extensions: ['.json', '.js', '.ts', '.jsx', '.tsx'],
   },
 };
 

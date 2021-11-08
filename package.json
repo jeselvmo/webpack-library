@@ -1,14 +1,15 @@
 {
   "name": "webpack-library",
+  "library": "WebpackLibrary",
   "version": "1.0.0",
   "description": "Produce universal library with webpack and es6",
-  "main": "lib/webpack-library.js",
+  "main": "dist/webpack-library.js",
   "scripts": {
-    "dev": "webpack --progress --watch",
-    "build": "yarn test && webpack --progress && cross-env NODE_ENV=production webpack --progress",
-    "test": "./node_modules/.bin/jest",
-    "test-watch": "./node_modules/.bin/jest --watch",
-    "repl": "node -i -e \"$(< ./lib/webpack-library.js)\""
+    "start": "webpack --progress --watch",
+    "build": "webpack --progress && cross-env NODE_ENV=production webpack --progress",
+    "server": "browser-sync start --server --files 'dist/*.js'",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,7 @@
   "keywords": [
     "webpack",
     "es6",
-    "starter",
     "library",
-    "universal",
     "umd",
     "commonjs",
     "jest"
@@ -31,19 +30,15 @@
   },
   "homepage": "https://github.com/jeselvmo/webpack-library",
   "devDependencies": {
-    "@babel/cli": "7.12.10",
-    "@babel/core": "7.12.10",
-    "@babel/plugin-proposal-class-properties": "7.12.1",
-    "@babel/preset-env": "7.12.11",
+    "@babel/cli": "7.16.0",
+    "@babel/core": "7.16.0",
+    "@babel/preset-env": "7.16.0",
     "@babel/preset-typescript": "^7.16.0",
-    "babel-jest": "26.6.3",
-    "babel-loader": "^8.0.0-beta.4",
-    "babel-plugin-add-module-exports": "1.0.4",
+    "babel-jest": "27.3.1",
+    "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
-    "jest": "26.6.3",
-    "mocha": "^4.0.1",
-    "webpack": "5.11.0",
-    "webpack-cli": "4.2.0",
-    "yargs": "^10.0.3"
+    "jest": "27.3.1",
+    "webpack": "5.62.1",
+    "webpack-cli": "4.9.1"
   }
 }

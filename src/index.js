@@ -5,3 +5,4 @@ import pig from './pig';
 export default { Dog, Cat, pig };
 
 console.log('Hello world from the bundle!');
+console.log('Hello world from the bundle!');
